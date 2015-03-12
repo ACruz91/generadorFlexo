@@ -5,11 +5,11 @@ alto.
 
 Parámetros
 ----------------------------
-  Fuerza
-  Intelecto
-  Visión
-  Postura
-  Agilidad
-  Altura
+  -Fuerza
+  -Intelecto
+  -Visión
+  -Postura
+  -Agilidad
+  -Altura
   
 Este programa está realizado en Java bajo la interfaz SWT de Eclipse
