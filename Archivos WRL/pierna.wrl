@@ -1,0 +1,82 @@
+#VRML V2.0 utf8
+WorldInfo
+{
+  title "Pierna"
+
+}
+
+Background
+{
+  skyColor 1.000000 1.000000 1.000000
+}	
+
+	Shape{ appearance Appearance { material 	Material {
+		diffuseColor 0.697737 0.696336 0.699331
+		ambientIntensity 0.113208
+		specularColor 0.227785 0.227345 0.227393
+		emissiveColor 0.000000 0.000000 0.000000
+		shininess 1.000000
+		transparency 0.000000
+	}}
+		#Pierna
+		geometry Extrusion{
+			crossSection [
+				-1 0,
+				-0.8666 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+
+				0 1,
+				0.5 0.8666,
+				0.7071 0.7071,				
+				0.8660 0.5,
+
+				1 0,
+				0.8660 -0.5,
+				0.7071 -0.7071,
+				0.5 -0.8666,
+
+				0 -1,							
+				-0.5 -0.8666,
+				-0.7071 -0.7071,				
+				-0.8660 -0.5,
+
+
+				-1 0,
+				-0.8660 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+			]
+spine[
+				0.5 1.75 0,
+				0.75 1.75 0,
+				1 1.75 0,
+				3.25 1.75 0,
+				3.5 1.75 0,
+				3.75 1.75 0,
+				7 1.75 0
+]
+
+scale[
+				0.75 0.75, 0.5 0.5, 0.125 0.125, 0.5 0.5, 0.75 0.75, 0.625 0.625, 0.5 0.5
+]
+		}								
+	}
+
+Viewpoint{
+	 position 4 1 10
+	 orientation 0 0 -1 1.58
+	 description "Pierna"
+}
+
+Viewpoint{
+	 position 4 2 3
+	 orientation 0 0 -1 1.58
+	 description "Rodilla"
+}
+
+Viewpoint{
+	 position 1 2 3
+	 orientation 0 0 -1 1.58
+	 description "Pie"
+}

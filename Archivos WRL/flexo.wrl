@@ -1,0 +1,148 @@
+#VRML V2.0 utf8
+WorldInfo
+{
+  title "Personaje Ficticio"
+
+}
+
+Background
+{
+  skyColor 1.000000 1.000000 1.000000
+}
+
+DEF Grupo Group {
+children[
+	Shape{ appearance Appearance { material Material {
+		diffuseColor 0.540541 0.000000 0.000000
+		ambientIntensity 0.250000
+		specularColor 0.592903 0.000000 0.129656
+		emissiveColor 0.000000 0.000000 0.000000
+		shininess 0.064865
+		transparency 0.000000
+	}}
+		#Cuerpo
+		geometry Extrusion{
+			crossSection [
+				-1 0,
+				-0.8666 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+
+				0 1,
+				0.5 0.8666,
+				0.7071 0.7071,				
+				0.8660 0.5,
+
+				1 0,
+				0.8660 -0.5,
+				0.7071 -0.7071,
+				0.5 -0.8666,
+
+				0 -1,							
+				-0.5 -0.8666,
+				-0.7071 -0.7071,				
+				-0.8660 -0.5,
+
+
+				-1 0,
+				-0.8660 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+			]
+spine[
+				0 -4 0,
+				0 -4.5 0,
+				0 -4.75 0,
+				0 -5.25 0,
+				0 -5.5 0,
+				0 -5.75 0,
+				0 -6 0,
+				0 -13 0,
+
+]
+
+scale[
+				0.5 0.5, 0.75 0.75, 1.5 1.5 1.75 1.75, 2 2, 2.25 2.25, 2.5 2.5, 2.5 2.5
+]
+		},			
+	}
+]
+}
+
+Transform {
+	rotation -1 -1 0 1.5708
+	translation 1.5 -11.5 -4  
+	children [
+		Inline {
+url "cola.wrl"
+		}]
+}
+
+Transform {
+	rotation 0 0 1 -1.5708
+	translation 3.2 -7 0  
+	children [
+		Inline {
+url "brazo.wrl"
+		}]
+}
+
+Transform {
+	rotation 0 0 1 1.5708
+	translation -3.2 -7 0  
+	children [
+		Inline {
+url "brazo.wrl"
+		}]
+}
+
+Transform {
+	rotation 0 0 0 0
+	translation 0 -0.5 0  
+	children [
+		Inline {
+url "cabeza.wrl"
+		}]
+}
+
+Transform {
+	rotation 0 0 1 1.5708
+	translation 3 -20 0  
+	children [
+		Inline {
+url "pierna.wrl"
+		}]
+}
+
+Transform {
+	rotation 0 0 1 1.5708
+	translation 0.5 -20 0  
+	children [
+		Inline {
+url "pierna.wrl"
+		}]
+}
+
+Transform {
+	rotation 1 0 0 -1.5708
+	translation 0.6 -0.6 3  
+	children [
+		Inline {
+url "ojo.wrl"
+		}]
+}
+
+Transform {
+	rotation 1 0 0 -1.5708
+	translation -0.6 -0.6 3  
+	children [
+		Inline {
+url "ojo.wrl"
+		}]
+}
+
+Viewpoint{
+	 position 10 -10 0
+	 orientation 0 -1 0 -0.75
+	 description "Cola"
+}

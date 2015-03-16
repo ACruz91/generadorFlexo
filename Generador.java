@@ -21,16 +21,29 @@ import org.eclipse.swt.widgets.Shell;
 
 public class Generador {
 	private int intelecto;
-	private int altura;
+	private int gordura;
 	private int fuerza;
 	private int vision;
 	private int agilidad;
 	private String postura;
 
+	private int contadorOjo;
+	private int contadorCabeza;
+	private int contadorCola;
+	private int contadorBrazo;
+	private int contadorPierna;
+	private int contadorFlexo;
+
 	public void Interfaz() {
 		Menu menuBar, menuArchivo;
 		MenuItem menuArchivoCabecera;
 		MenuItem menuArchivoSalir, menuArchivoNuevo;
+
+		setContadorOjo(0);
+		setContadorCabeza(0);
+		setContadorCola(0);
+		setContadorPierna(0);
+		setContadorFlexo(0);
 
 		// Creación del display y shell
 		Display display = new Display();
@@ -74,6 +87,7 @@ public class Generador {
 
 		class nuevo implements SelectionListener {
 			public void widgetSelected(SelectionEvent event) {
+
 				// Creación de una Shell hija llamada "nuevo" para el nuevo
 				// dialogo
 				Shell nuevo = new Shell(shell, SWT.DIALOG_TRIM);
@@ -98,11 +112,11 @@ public class Generador {
 				comboFuerza.add("0");
 				comboFuerza.add("1");
 				comboFuerza.add("2");
-				comboFuerza.add("2");
+				comboFuerza.add("3");
 				comboFuerza.add("4");
 				comboFuerza.add("5");
 				comboFuerza.setText("0");
-				setAltura(Integer.parseInt(comboFuerza.getText()));
+				setFuerza(Integer.parseInt(comboFuerza.getText()));
 
 				// Creación del Label y Text para pedir el Intelecto
 				Label labelIntelecto = new Label(nuevo, SWT.LEFT);
@@ -111,11 +125,11 @@ public class Generador {
 				comboIntelecto.add("0");
 				comboIntelecto.add("1");
 				comboIntelecto.add("2");
-				comboIntelecto.add("2");
+				comboIntelecto.add("3");
 				comboIntelecto.add("4");
 				comboIntelecto.add("5");
 				comboIntelecto.setText("0");
-				setAltura(Integer.parseInt(comboIntelecto.getText()));
+				setIntelecto(Integer.parseInt(comboIntelecto.getText()));
 
 				// Creación del Label y Text para pedir la Vision
 				Label labelVision = new Label(nuevo, SWT.LEFT);
@@ -124,24 +138,24 @@ public class Generador {
 				comboVision.add("0");
 				comboVision.add("1");
 				comboVision.add("2");
-				comboVision.add("2");
+				comboVision.add("3");
 				comboVision.add("4");
 				comboVision.add("5");
 				comboVision.setText("0");
-				setAltura(Integer.parseInt(comboVision.getText()));
+				setVision(Integer.parseInt(comboVision.getText()));
 
 				// Creación del Label y Text para pedir la Altura
 				Label labelAltura = new Label(nuevo, SWT.LEFT);
-				labelAltura.setText("Altura: ");
-				Combo comboAltura = new Combo(nuevo, SWT.NONE);
-				comboAltura.add("0");
-				comboAltura.add("1");
-				comboAltura.add("2");
-				comboAltura.add("2");
-				comboAltura.add("4");
-				comboAltura.add("5");
-				comboAltura.setText("0");
-				setAltura(Integer.parseInt(comboAltura.getText()));
+				labelAltura.setText("Gordura: ");
+				Combo comboGordura = new Combo(nuevo, SWT.NONE);
+				comboGordura.add("0");
+				comboGordura.add("1");
+				comboGordura.add("2");
+				comboGordura.add("3");
+				comboGordura.add("4");
+				comboGordura.add("5");
+				comboGordura.setText("0");
+				setGordura(Integer.parseInt(comboGordura.getText()));
 
 				// Creación del Label y Text para pedir la Agilidad
 				Label labelAgilidad = new Label(nuevo, SWT.LEFT);
@@ -150,11 +164,11 @@ public class Generador {
 				comboAgilidad.add("0");
 				comboAgilidad.add("1");
 				comboAgilidad.add("2");
-				comboAgilidad.add("2");
+				comboAgilidad.add("3");
 				comboAgilidad.add("4");
 				comboAgilidad.add("5");
 				comboAgilidad.setText("0");
-				setAltura(Integer.parseInt(comboAgilidad.getText()));
+				setGordura(Integer.parseInt(comboAgilidad.getText()));
 
 				// Creación del Label y Text para pedir la Postura
 				Label labelPostura = new Label(nuevo, SWT.LEFT);
@@ -176,7 +190,7 @@ public class Generador {
 						setFuerza(Integer.parseInt(comboFuerza.getText()));
 						setIntelecto(Integer.parseInt(comboIntelecto.getText()));
 						setVision(Integer.parseInt(comboVision.getText()));
-						setAltura(Integer.parseInt(comboAltura.getText()));
+						setGordura(Integer.parseInt(comboGordura.getText()));
 						setAgilidad(Integer.parseInt(comboAgilidad.getText()));
 
 						// Creación de un Dialogo para Abrir cabeza.wrl
@@ -220,6 +234,14 @@ public class Generador {
 						fdBrazo.setFilterExtensions(filterExtBrazo);
 						String ficheroBrazo = fdBrazo.open();
 
+						// Creación de un Dialogo para Abrir brazo2.wrl
+						FileDialog fdBrazo2 = new FileDialog(shell, SWT.OPEN
+								| SWT.CLOSE);
+						fdBrazo2.setFilterPath("C:/");
+						String[] filterExtBrazo2 = { "brazo2.wrl"};
+						fdBrazo2.setFilterExtensions(filterExtBrazo2);
+						String ficheroBrazo2 = fdBrazo2.open();
+						
 						// Creación de un Dialogo para Abrir pierna.wrl
 						FileDialog fdPierna = new FileDialog(shell, SWT.OPEN
 								| SWT.CLOSE);
@@ -232,16 +254,30 @@ public class Generador {
 						if (ficheroCabeza != null && ficheroOjo != null
 								&& ficheroCola != null && ficheroFlexo != null
 								&& ficheroBrazo != null
-								&& ficheroPierna != null) {
+								&& ficheroPierna != null && ficheroBrazo2 != null) {
 
 							funciones.cambiarCabeza(ficheroCabeza,
-									getIntelecto());
-							funciones.cambiarOjo(ficheroOjo, getVision());
-							funciones.cambiarCola(ficheroCola, getAgilidad());
-							// funciones.cambiarAltura(ficheroFlexo,getAltura());
-							funciones.cambiarFuerza(ficheroBrazo,
-									ficheroPierna, getFuerza());
-							funciones.cambiarArchivos(ficheroFlexo);
+									getIntelecto(), getContadorCabeza());
+							funciones.cambiarOjo(ficheroOjo, getVision(),
+									getContadorOjo());
+							funciones.cambiarCola(ficheroCola, getAgilidad(),
+									getContadorCola());
+							funciones.cambiarFuerza(ficheroPierna,
+									ficheroBrazo, ficheroBrazo2, getFuerza(),
+									getContadorPierna(), getContadorBrazo());
+							funciones.cambiarArchivos(ficheroFlexo, ficheroBrazo2,
+									getFuerza(), getIntelecto(), getVision(),
+									getGordura(), getAgilidad(), getPostura(),
+									getContadorFlexo(), getContadorCola(),
+									getContadorOjo(), getContadorPierna(),
+									getContadorBrazo(), getContadorCabeza());
+
+							setContadorCabeza(getContadorCabeza() + 1);
+							setContadorPierna(getContadorPierna() + 1);
+							setContadorBrazo(getContadorBrazo() + 1);
+							setContadorOjo(getContadorOjo() + 1);
+							setContadorCola(getContadorCola() + 1);
+							setContadorFlexo(getContadorFlexo() + 1);
 
 							// Creacion de una Ilustración que muestra los datos
 							// que se han introducido en ese Ser
@@ -255,11 +291,10 @@ public class Generador {
 							resultado += ("- Fuerza:      " + getFuerza() + "\n");
 							resultado += ("- Intelecto:   " + getIntelecto() + "\n");
 							resultado += ("- Visión:      " + getVision() + "\n");
-							resultado += ("- Altura:      " + getAltura() + "\n");
+							resultado += ("- Gordura:      " + getGordura() + "\n");
 							resultado += ("- Agilidad:    " + getAgilidad() + "\n");
 							resultado += ("- Postura:    " + getPostura() + "\n");
-							resultado += ("- Nombre del Archivo: "
-									+ ficheroFlexo + "\n");
+							resultado += ("- Ruta de Flexo: " + ficheroFlexo + "\n");
 
 							sytledText.setText(resultado);
 							item.setControl(sytledText);
@@ -273,12 +308,13 @@ public class Generador {
 							StyledText sytledTextError = new StyledText(folder,
 									SWT.NONE);
 							sytledTextError
-							.setText("No se ha podido crear el Ser");
+									.setText("No se ha podido crear el Ser");
 							item.setControl(sytledTextError);
 							folder.showItem(item);
 							folder.setSelection(item);
 
 						}
+
 					}
 
 					public void widgetDefaultSelected(SelectionEvent event) {
@@ -338,12 +374,12 @@ public class Generador {
 		this.intelecto = intelecto;
 	}
 
-	public int getAltura() {
-		return altura;
+	public int getGordura() {
+		return gordura;
 	}
 
-	public void setAltura(int altura) {
-		this.altura = altura;
+	public void setGordura(int gordura) {
+		this.gordura = gordura;
 	}
 
 	public int getFuerza() {
@@ -376,6 +412,54 @@ public class Generador {
 
 	public void setPostura(String postura) {
 		this.postura = postura;
+	}
+
+	public int getContadorOjo() {
+		return contadorOjo;
+	}
+
+	public void setContadorOjo(int contadorOjo) {
+		this.contadorOjo = contadorOjo;
+	}
+
+	public int getContadorCabeza() {
+		return contadorCabeza;
+	}
+
+	public void setContadorCabeza(int contadorCabeza) {
+		this.contadorCabeza = contadorCabeza;
+	}
+
+	public int getContadorCola() {
+		return contadorCola;
+	}
+
+	public void setContadorCola(int contadorCola) {
+		this.contadorCola = contadorCola;
+	}
+
+	public int getContadorBrazo() {
+		return contadorBrazo;
+	}
+
+	public void setContadorBrazo(int contadorBrazo) {
+		this.contadorBrazo = contadorBrazo;
+	}
+
+	public int getContadorPierna() {
+		return contadorPierna;
+	}
+
+	public void setContadorPierna(int contadorPierna) {
+		this.contadorPierna = contadorPierna;
+	}
+
+	public int getContadorFlexo() {
+		return contadorFlexo;
+	}
+
+	public void setContadorFlexo(int contadorFlexo) {
+		this.contadorFlexo = contadorFlexo;
 	}
 
 }

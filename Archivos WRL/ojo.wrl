@@ -1,0 +1,67 @@
+#VRML V2.0 utf8
+WorldInfo
+{
+  title "Ojo"
+
+}
+
+Background
+{
+  skyColor 1.000000 1.000000 1.000000
+}
+
+Shape{ appearance Appearance { material 	Material {
+		diffuseColor 0.748014 0.620850 0.000000
+		ambientIntensity 0.250000
+		specularColor 0.860606 0.860606 0.860599
+		emissiveColor 0.000000 0.000000 0.000000
+		shininess 0.939394
+		transparency 0.347490
+	}}
+		#Ojo
+		geometry Extrusion{
+			crossSection [
+				-1 0,
+				-0.8666 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+
+				0 1,
+				0.5 0.8666,
+				0.7071 0.7071,				
+				0.8660 0.5,
+
+				1 0,
+				0.8660 -0.5,
+				0.7071 -0.7071,
+				0.5 -0.8666,
+
+				0 -1,							
+				-0.5 -0.8666,
+				-0.7071 -0.7071,				
+				-0.8660 -0.5,
+
+
+				-1 0,
+				-0.8660 0.5,
+				-0.7071 0.7071,
+				-0.5 0.8666,
+			]
+spine[
+				0, 0.125, 0
+				0, 0.25, 0
+				0, 0.50, 0
+				0, 0.75, 0
+]
+
+scale[
+			0 0, 0.5 0.5, 0.625 0.625, 0.75 0.75
+]
+		},			
+	}
+
+Viewpoint{
+	 position 0 0 5
+	 orientation 0 0 0 0 
+	 description "Ojos"
+}
